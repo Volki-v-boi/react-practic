@@ -1,25 +1,16 @@
+import { useSelector } from "react-redux";
+import Balance from "../Balance/Balance";
+import LangSwitcher from "../LangSwitcher/LangSwitcher";
+
 export default function App() {
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-
-    const form = evt.target;
-    const { login, password } = form.elements;
-
-    // Посилання на DOM-елементи
-    console.log(login, password);
-
-    // Значення полів
-    console.log(login.value, password.value);
-
-    // Скидаємо значення полів після відправки
-    form.reset();
-  };
-
+  const lang = useSelector((state) => state.locale.lang);
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="login" />
-      <input type="password" name="password" />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      <h1>Credits</h1>
+      <Balance />
+      <hr />
+      <LangSwitcher />
+      <p>Selected lang: {lang} </p>
+    </div>
   );
 }
